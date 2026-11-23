@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeto Cachorro Vizinho - Contribuição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #16a34a;
+      --primary-hover: #15803d;
+      --primary-dark: #14532d;
+      --primary-soft: #dcfce7;
+      --primary-tint: #f0fdf4;
+      --accent: #ea580c;
+      --bg-page: #eef2f0;
+      --bg-card: #ffffff;
+      --bg-subtle: #f8fafc;
+      --text-main: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.07);
+      --shadow-cta: 0 10px 24px rgba(22, 163, 74, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(22, 163, 74, 0.12), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(20, 83, 45, 0.09), transparent 45%),
+        var(--bg-page);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .value-btn, .cta-btn {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      background: var(--bg-card);
+      min-height: 100vh;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      min-height: 204px;
+      background: linear-gradient(135deg, #064e3b 0%, #15803d 55%, #16a34a 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px 20px;
+      color: #fff;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(6, 78, 59, 0.72) 0%, rgba(6, 78, 59, 0.28) 100%);
+      z-index: 1;
+    }
+
+    .hero-banner img.bg-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.34;
+      transform: scale(1.03);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 66%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+    }
+
+    .hero-content h2 {
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-logo-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      color: var(--primary-dark);
+      padding: 12px 12px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      width: 112px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-logo-box span {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-logo-box strong {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.15;
+      display: block;
+      margin-top: 3px;
+      color: #0f172a;
+    }
+
+    .main-body {
+      padding: 24px 20px 36px;
+      flex: 1;
+    }
+
+    .unlocked-banner {
+      display: none;
+      background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1.5px solid #86efac;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .unlocked-banner.active {
+      display: block;
+    }
+
+    .unlocked-banner-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .unlocked-banner strong {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .unlocked-banner p {
+      font-size: 12.5px;
+      color: #1e293b;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .unlocked-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-small-primary {
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+
+    .btn-small-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-small-outline {
+      background: rgba(255, 255, 255, 0.85);
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 11px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-small-outline:hover {
+      background: #fff;
+      color: #0f172a;
+    }
+
+    .project-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .project-highlight {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      padding-left: 12px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .section-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+    }
+
+    .value-btn {
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 15px 12px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .value-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-tint);
+      transform: translateY(-1px);
+    }
+
+    .value-btn.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.16);
+    }
+
+    .toggle-more {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--primary-hover);
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 14px 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.15s ease;
+    }
+
+    .toggle-more:hover {
+      color: var(--primary-dark);
+    }
+
+    .more-values {
+      display: none;
+      margin-bottom: 14px;
+    }
+
+    .more-values.open {
+      display: grid;
+    }
+
+    .custom-amount-box {
+      margin-top: 4px;
+      margin-bottom: 18px;
+    }
+
+    .custom-amount-box input {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-main);
+      background: var(--bg-subtle);
+      outline: none;
+      transition: all 0.18s ease;
+    }
+
+    .custom-amount-box input:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+    }
+
+    .cta-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow-cta);
+      transition: all 0.18s ease;
+    }
+
+    .cta-btn:hover {
+      filter: brightness(1.04);
+      transform: translateY(-1px);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .cta-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .bonus-card {
+      margin-top: 26px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 15px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bonus-thumb {
+      width: 68px;
+      height: 88px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #14532d 0%, #16a34a 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(20, 83, 45, 0.22);
+    }
+
+    .bonus-info h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .bonus-info p {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .bonus-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary-hover);
+      background: var(--primary-tint);
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .deliverable-section {
+      display: none;
+      margin-top: 24px;
+      border: 1.5px solid #86efac;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 100%);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .deliverable-section.active {
+      display: block;
+    }
+
+    .guide-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .guide-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--primary-dark);
+      background: #bbf7d0;
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    .guide-select {
+      padding: 7px 11px;
+      border-radius: 10px;
+      border: 1px solid #86efac;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      outline: none;
+    }
+
+    .guide-progress-track {
+      width: 100%;
+      height: 6px;
+      background: #dcfce7;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .guide-progress-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    .guide-page-card {
+      background: #fff;
+      border: 1px solid #dcfce7;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(20, 83, 45, 0.04);
+    }
+
+    .guide-page-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .guide-page-intro {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .qa-item {
+      border-top: 1px solid #f1f5f9;
+      padding-top: 11px;
+      margin-top: 11px;
+    }
+
+    .qa-item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .qa-question {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .qa-answer {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #334155;
+    }
+
+    .qa-list {
+      padding-left: 18px;
+      margin-top: 6px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #334155;
+    }
+
+    .guide-nav {
+      display: flex;
+      gap: 10px;
+    }
+
+    .guide-nav-btn {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--primary);
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .guide-nav-btn.secondary {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .guide-nav-btn.secondary:hover:not(:disabled) {
+      background: var(--primary-tint);
+    }
+
+    .guide-nav-btn.primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .guide-nav-btn.primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .guide-nav-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 24px 22px;
+      position: relative;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+      animation: fadeUp 0.2s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      border: none;
+      font-size: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-modal:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .modal-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .pix-area {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .pix-qr {
+      width: 180px;
+      height: 180px;
+      margin: 12px auto;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 8px;
+      background: #fff;
+    }
+
+    .pix-code-box {
+      width: 100%;
+      padding: 11px;
+      font-size: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      color: #334155;
+    }
+
+    .status-waiting {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .error-msg {
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: #b91c1c;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero-banner">
+    <img class="bg-photo" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80" alt="Cães">
+    <div class="hero-content">
+      <span class="hero-badge">✦ Apoio Direto</span>
+      <h2>Ajude a transformar a vida de cães de rua</h2>
+    </div>
+    <div class="hero-logo-box">
+      <span>Projeto</span>
+      <strong>Cachorro Vizinho</strong>
+    </div>
+  </div>
+
+  <div class="main-body">
+    <div class="unlocked-banner" id="persistentUnlockedBanner">
+      <div class="unlocked-banner-top">
+        <strong>✅ Acesso Liberado (<span id="savedAmountLabel">R$ 29,90</span>)</strong>
+        <button type="button" class="btn-small-outline" id="resetAccessBtn" title="Limpar acesso salvo">Limpar</button>
+      </div>
+      <p>Seu guia de 10 páginas continua liberado neste navegador mesmo após recarregar a página.</p>
+      <div class="unlocked-actions">
+        <button type="button" class="btn-small-primary" id="scrollToGuideBtn">Ir para o Guia de 10 Páginas ↓</button>
+      </div>
+    </div>
+
+    <h1 class="project-title">Projeto Cachorro Vizinho</h1>
+    <p class="project-desc">
+      ❤️ Ao contribuir, você também ajuda a divulgar este projeto para que mais pessoas aprendam a cuidar dos cães que precisam de ajuda[span_0](start_span)[span_0](end_span).
+    </p>
+    <p class="project-highlight">
+      Contribua para manter o projeto disponível e impactar mais vidas[span_1](start_span)[span_1](end_span).
+    </p>
+
+    <div class="section-label">Escolha quanto contribuir</div>
+
+    <div class="values-grid" id="primaryGrid">
+      <button type="button" class="value-btn" data-val="9.90">R$ 9,90</button>
+      <button type="button" class="value-btn active" data-val="29.90">R$ 29,90</button>
+      <button type="button" class="value-btn" data-val="49.90">R$ 49,90</button>
+      <button type="button" class="value-btn" data-val="69.90">R$ 69,90</button>
+    </div>
+
+    <button type="button" class="toggle-more" id="toggleMoreBtn">
+      <span>+ Quero contribuir com mais</span>
+      <span id="arrowIcon">⌄</span>
+    </button>
+
+    <div class="values-grid more-values" id="moreGrid">
+      <button type="button" class="value-btn" data-val="89.90">R$ 89,90</button>
+      <button type="button" class="value-btn" data-val="109.90">R$ 109,90</button>
+      <button type="button" class="value-btn" data-val="129.90">R$ 129,90</button>
+      <button type="button" class="value-btn" data-val="299.90">R$ 299,90</button>
+    </div>
+
+    <div class="custom-amount-box">
+      <input type="number" id="customAmount" placeholder="Ou digite outro valor (R$)" min="5" step="0.01">
+    </div>
+
+    <button type="button" class="cta-btn" id="openCheckoutBtn">
+      Contribuir com R$ <span id="selectedLabel">29,90</span> →
+    </button>
+
+    <div class="bonus-card">
+      <div class="bonus-thumb">
+        GUIA<br>10 PÁG.
+      </div>
+      <div class="bonus-info">
+        <h4>Guia Prático: Como Ajudar Cães de Rua</h4>
+        <p>10 páginas com perguntas essenciais, diagnóstico, água, abrigo, vizinhança e plano de 7 dias.</p>
+        <span class="bonus-tag">🔓 Liberado no próprio site após pagamento Pix</span>
+      </div>
+    </div>
+
+    <section class="deliverable-section" id="deliverableContent">
+      <div class="guide-topbar">
+        <span class="guide-badge" id="pageIndicator">Página 1 de 10</span>
+        <select class="guide-select" id="pageJumpSelect" aria-label="Selecionar página do guia">
+          <option value="0">Pág. 1 — Capa e Mapa</option>
+          <option value="1">Pág. 2 — Diagnóstico Inicial</option>
+          <option value="2">Pág. 3 — Segurança Pessoal</option>
+          <option value="3">Pág. 4 — Local na Rua</option>
+          <option value="4">Pág. 5 — Água Limpa</option>
+          <option value="5">Pág. 6 — Alimentação Segura</option>
+          <option value="6">Pág. 7 — Abrigo Simples</option>
+          <option value="7">Pág. 8 — Vizinhança e Rede</option>
+          <option value="8">Pág. 9 — Saúde e Órgãos Públicos</option>
+          <option value="9">Pág. 10 — Plano de 7 Dias</option>
+        </select>
+      </div>
+
+      <div class="guide-progress-track">
+        <div class="guide-progress-fill" id="guideProgressFill"></div>
+      </div>
+
+      <div class="guide-page-card" id="guidePageContainer"></div>
+
+      <div class="guide-nav">
+        <button type="button" class="guide-nav-btn secondary" id="prevPageBtn">← Anterior</button>
+        <button type="button" class="guide-nav-btn primary" id="nextPageBtn">Próxima →</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal-box">
+    <button class="close-modal" id="closeModalBtn">&times;</button>
+    <h3 class="modal-title">Finalizar Contribuição</h3>
+    <p class="modal-sub">Valor selecionado: <strong id="modalAmountText">R$ 29,90</strong></p>
+
+    <div id="stepForm">
+      <div class="form-group">
+        <label>Seu nome</label>
+        <input type="text" id="payerName" placeholder="Digite seu nome" required>
+      </div>
+      <div class="form-group">
+        <label>Seu e-mail</label>
+        <input type="email" id="payerEmail" placeholder="seuemail@exemplo.com" required>
+      </div>
+      <button type="button" class="cta-btn" id="generatePixBtn">Gerar Pix Copia e Cola</button>
+      <div class="error-msg" id="checkoutError"></div>
+    </div>
+
+    <div class="pix-area" id="stepPix">
+      <p style="font-size: 13px; color: #166534; font-weight: 600;">Escaneie o QR Code ou copie o código Pix:</p>
+      <img class="pix-qr" id="pixQrImg" src="" alt="QR Code Pix">
+      <input type="text" class="pix-code-box" id="pixCopyPaste" readonly>
+      <button type="button" class="cta-btn" id="copyPixBtn">Copiar Código Pix</button>
+      <p class="status-waiting">⏳ Aguardando confirmação via webhook / pagamento Pix...</p>
+    </div>
+
+    <div class="pix-area" id="stepUnlocked">
+      <div style="font-size: 42px; margin-bottom: 8px;">✅</div>
+      <h4 style="font-size: 17px; font-weight: 800; color: #166534; margin-bottom: 6px;">
+        Pagamento Confirmado!
+      </h4>
+      <p style="font-size: 13px; color: #4b5563; margin-bottom: 16px;">
+        Seu produto já foi liberado e fica salvo neste navegador mesmo se você recarregar a página.
+      </p>
+      <button type="button" class="cta-btn" id="openUnlockedGuideBtn">
+        📖 Ler Guia de 10 Páginas Agora
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'projeto_cachorro_vizinho_pago_v1';
+
+  const GUIDE_PAGES = [
+    {
+      title: 'Página 1 — Capa e Mapa do Guia',
+      intro: 'Transforme a boa vontade em ações práticas, seguras para você e eficientes para os cães em situação de rua.',
+      items: [
+        {
+          q: 'Pergunta de abertura: qual é o seu foco principal agora?',
+          a: 'Defina se você vai ajudar um cão específico que apareceu ou estruturar um ponto de apoio recorrente na sua rua/bairro.',
+          bullets: [
+            'Páginas 2 a 4: diagnóstico e segurança.',
+            'Páginas 5 a 7: água, alimentação e abrigo.',
+            'Páginas 8 a 10: vizinhança, saúde e plano de 7 dias.'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Página 2 — Diagnóstico Antes de Se Aproximar',
+      intro: 'Avalie o cenário em segundos antes de oferecer comida ou tentar qualquer aproximação.',
+      items: [
+        {
+          q: '1. O cão demonstra medo extremo, dor ou agressividade?',
+          a: 'Mantenha distância, evite movimentos bruscos ou olhar fixo e deixe água/ração a alguns metros de distância.'
+        },
+        {
+          q: '2. Ele está em área de risco imediato (avenida, chuva forte ou obra)?',
+          a: 'Priorize evitar rota de atropelamento e peça apoio de outras pessoas se precisar conter ou remover com segurança.'
+        },
+        {
+          q: '3. Ele é filhote, idoso, gestante ou está debilitado?',
+          a: 'Esses animais sofrem mais com frio, calor e desidratação; exigem atenção redobrada e observação frequente.'
+        },
+        {
+          q: '4. Já existe alguém da vizinhança alimentando esse animal?',
+          a: 'Converse com quem já ajuda para alinhar horários e evitar excesso de comida acumulada no chão.'
+        }
+      ]
+    },
+    {
+      title: 'Página 3 — Segurança Pessoal e Cuidados',
+      intro: 'Ajudar com responsabilidade também protege a sua integridade física.',
+      items: [
+        {
+          q: 'Devo tentar fazer carinho em um cão de rua assustado ou com dor?',
+          a: 'Não force contato físico. Deixe que o animal tome a iniciativa ou mantenha distância segura.'
+        },
+        {
+          q: 'Posso mexer ou falar perto de um cão que está comendo ou dormindo?',
+          a: 'Evite interromper refeições ou o sono de um animal na rua, pois isso eleva o risco de reação defensiva.'
+        },
+        {
+          q: 'O que fazer se ocorrer arranhão ou mordedura?',
+          a: 'Lave com água corrente e sabão em abundância por vários minutos e procure atendimento médico (UBS/UPA) para avaliação.'
+        }
+      ]
+    },
+    {
+      title: 'Página 4 — Escolhendo o Local Certo na Rua',
+      intro: 'O local define se o cuidado vai funcionar no dia a dia ou gerar atritos no bairro.',
+      items: [
+        {
+          q: 'O ponto atrapalha passagem de pedestres, cadeirantes ou garagens?',
+          a: 'Escolha cantos recuados, discretos e fora da circulação direta de pessoas e veículos.'
+        },
+        {
+          q: 'O local fica próximo a vias de trânsito rápido?',
+          a: 'Evite posicionar alimento perto de ruas movimentadas para não atrair o cão para a pista.'
+        },
+        {
+          q: 'É fácil manter o local limpo e sem sujeira?',
+          a: 'Prefira pontos de fácil higienização e evite deixar restos de comida expostos.'
+        }
+      ]
+    },
+    {
+      title: 'Página 5 — Água Limpa: Prioridade Número 1',
+      intro: 'Água limpa e fresca é o item mais urgente na rotina de qualquer cão de rua.',
+      items: [
+        {
+          q: 'Qual recipiente é mais indicado?',
+          a: 'Use potes pesados, de base firme ou fáceis de lavar, reduzindo tombos e acúmulo de sujeira.'
+        },
+        {
+          q: 'Com que frequência devo trocar a água?',
+          a: 'Todos os dias — e mais de uma vez em dias quentes — lavando o recipiente para tirar limo.'
+        },
+        {
+          q: 'Onde colocar o pote de água?',
+          a: 'Na sombra, em local discreto e protegido de enxurradas ou produtos de limpeza.'
+        }
+      ]
+    },
+    {
+      title: 'Página 6 — Alimentação Segura',
+      intro: 'Ofereça alimentos adequados para evitar intoxicação, engasgo ou problemas digestivos.',
+      items: [
+        {
+          q: 'Qual é a base mais segura no dia a dia?',
+          a: 'Ração seca própria para cães em porções controladas, evitando acúmulo de sobras no chão.'
+        },
+        {
+          q: 'O que NUNCA deve ser dado?',
+          a: 'Ossos cozidos (podem estilhaçar), chocolate, cebola, alho, uvas/passas, álcool, cafeína, embutidos e frituras/excesso de gordura.'
+        },
+        {
+          q: 'Como evitar disputas entre cães?',
+          a: 'Sirva em horários regulares e, se houver mais de um animal, distribua recipientes separados.'
+        }
+      ]
+    },
+    {
+      title: 'Página 7 — Abrigo Simples Contra Chuva, Vento e Frio',
+      intro: 'Um abrigo simples, seco e estável já faz grande diferença na proteção do animal.',
+      items: [
+        {
+          q: 'O abrigo protege da chuva e do vento direto?',
+          a: 'Utilize estruturas fechadas nas laterais e no teto, com abertura voltada para fora do vento dominante.'
+        },
+        {
+          q: 'Como isolar o fundo do chão úmido ou gelado?',
+          a: 'Eleve levemente a base com estrado, madeira seca ou papelão grosso bem protegido da umidade.'
+        },
+        {
+          q: 'Como manter o abrigo aceito na vizinhança?',
+          a: 'Mantenha o espaço limpo, discreto e bem organizado para evitar reclamações.'
+        }
+      ]
+    },
+    {
+      title: 'Página 8 — Mobilizando a Vizinhança e a Rede Local',
+      intro: 'Dividir o cuidado com outras pessoas evita sobrecarga e dá continuidade ao projeto.',
+      items: [
+        {
+          q: 'Como abordar vizinhos sem gerar resistência?',
+          a: 'Fale com clareza sobre organização, higiene e bem-estar do bairro, mostrando responsabilidade.'
+        },
+        {
+          q: 'Como organizar a divisão de tarefas?',
+          a: 'Combine dias alternados (ex.: seg/qua/sex) ou rateio simples de ração entre quem topa ajudar.'
+        },
+        {
+          q: 'Quais informações enviar ao pedir ajuda?',
+          a: 'Endereço/ponto de referência, fotos nítidas, comportamento do cão e descrição objetiva da situação.'
+        }
+      ]
+    },
+    {
+      title: 'Página 9 — Saúde, Castração e Órgãos Públicos',
+      intro: 'Cuidado sustentável une atenção veterinária, prevenção e apoio comunitário/público.',
+      items: [
+        {
+          q: 'Quando buscar avaliação veterinária?',
+          a: 'Em casos de feridas que não cicatrizam, apatia intensa, vômitos/diarreia persistentes ou parasitas severos.'
+        },
+        {
+          q: 'Qual o papel da castração?',
+          a: 'Ajuda a conter o aumento desordenado de animais nas ruas, reduz fugas/disputas e favorece a saúde a longo prazo.'
+        },
+        {
+          q: 'Onde buscar apoio adicional?',
+          a: 'Acompanhe campanhas municipais de castração/vacinação, programas de bem-estar animal e protetores locais.'
+        }
+      ]
+    },
+    {
+      title: 'Página 10 — Plano de 7 Dias e Checklist Rápido',
+      intro: 'Siga este roteiro prático na primeira semana para colocar o cuidado em movimento.',
+      items: [
+        {
+          q: 'Roteiro dos primeiros 7 dias:',
+          a: 'Execute uma etapa por dia com constância:',
+          bullets: [
+            'Dia 1: observar o cão à distância e avaliar segurança do local.',
+            'Dia 2: definir o ponto discreto de água limpa e trocar diariamente.',
+            'Dia 3: iniciar oferta controlada de ração adequada.',
+            'Dia 4: posicionar abrigo seco e protegido.',
+            'Dia 5: conversar com 2 ou 3 vizinhos para alinhar apoio.',
+            'Dia 6: registrar fotos, localização e necessidades.',
+            'Dia 7: revisar a rotina e ajustar o que for preciso.'
+          ]
+        },
+        {
+          q: 'Checklist rápido de hoje:',
+          a: 'Água limpa trocada ✅ | Ração segura e sem excessos ✅ | Abrigo seco e local seguro ✅ | Vizinhança alinhada ✅'
+        }
+      ]
+    }
+  ];
+
+  let selectedAmount = 29.90;
+  let currentPageIndex = 0;
+  let currentTransactionId = null;
+  let checkInterval = null;
+
+  const valueButtons = document.querySelectorAll('.value-btn');
+  const customInput = document.getElementById('customAmount');
+  const selectedLabel = document.getElementById('selectedLabel');
+  const toggleMoreBtn = document.getElementById('toggleMoreBtn');
+  const moreGrid = document.getElementById('moreGrid');
+  const arrowIcon = document.getElementById('arrowIcon');
+
+  const persistentBanner = document.getElementById('persistentUnlockedBanner');
+  const savedAmountLabel = document.getElementById('savedAmountLabel');
+  const deliverableSection = document.getElementById('deliverableContent');
+  const guidePageContainer = document.getElementById('guidePageContainer');
+  const pageIndicator = document.getElementById('pageIndicator');
+  const pageJumpSelect = document.getElementById('pageJumpSelect');
+  const guideProgressFill = document.getElementById('guideProgressFill');
+  const prevPageBtn = document.getElementById('prevPageBtn');
+  const nextPageBtn = document.getElementById('nextPageBtn');
+  const checkoutError = document.getElementById('checkoutError');
+
+  function formatBRL(num) {
+    return Number(num).toFixed(2).replace('.', ',');
+  }
+
+  function showError(msg) {
+    checkoutError.textContent = msg;
+    checkoutError.style.display = 'block';
+  }
+
+  function clearError() {
+    checkoutError.textContent = '';
+    checkoutError.style.display = 'none';
+  }
+
+  function updateSelectedAmount(val) {
+    selectedAmount = parseFloat(val) || 9.90;
+    selectedLabel.textContent = formatBRL(selectedAmount);
+  }
+
+  function renderGuidePage(index) {
+    const safeIndex = Math.max(0, Math.min(GUIDE_PAGES.length - 1, index));
+    currentPageIndex = safeIndex;
+    const page = GUIDE_PAGES[safeIndex];
+
+    pageIndicator.textContent = `Página ${safeIndex + 1} de ${GUIDE_PAGES.length}`;
+    pageJumpSelect.value = String(safeIndex);
+    guideProgressFill.style.width = `${((safeIndex + 1) / GUIDE_PAGES.length) * 100}%`;
+    prevPageBtn.disabled = safeIndex === 0;
+    nextPageBtn.disabled = safeIndex === GUIDE_PAGES.length - 1;
+
+    const itemsHtml = page.items.map(item => {
+      const bulletsHtml = item.bullets
+        ? `<ul class="qa-list">${item.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
+        : '';
+      return `
+        <div class="qa-item">
+          <div class="qa-question">${item.q}</div>
+          <div class="qa-answer">${item.a}</div>
+          ${bulletsHtml}
+        </div>
+      `;
+    }).join('');
+
+    guidePageContainer.innerHTML = `
+      <h3 class="guide-page-title">${page.title}</h3>
+      <p class="guide-page-intro">${page.intro}</p>
+      ${itemsHtml}
+    `;
+  }
+
+  function applyUnlockedState(amount) {
+    if (checkInterval) clearInterval(checkInterval);
+    savedAmountLabel.textContent = 'R$ ' + formatBRL(amount);
+    persistentBanner.classList.add('active');
+    deliverableSection.classList.add('active');
+    renderGuidePage(currentPageIndex);
+  }
+
+  function savePaidAccess(amount, transactionId = '', name = '', email = '') {
+    const payload = {
+      paid: true,
+      amount: Number(amount),
+      transactionId,
+      name,
+      email,
+      paidAt: new Date().toISOString()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    applyUnlockedState(payload.amount);
+  }
+
+  async function restorePaidAccessOnLoad() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+
+      if (data && data.paid) {
+        applyUnlockedState(data.amount || selectedAmount);
+        return;
+      }
+
+      if (data && data.transactionId) {
+        const res = await fetch(`/status-pix?id=${encodeURIComponent(data.transactionId)}`);
+        if (res.ok) {
+          const statusData = await res.json();
+          if (statusData.status === 'paid') {
+            savePaidAccess(data.amount || selectedAmount, data.transactionId, data.name, data.email);
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Erro ao restaurar acesso:', e);
+    }
+  }
+
+  valueButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      valueButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      customInput.value = '';
+      updateSelectedAmount(btn.dataset.val);
+    });
+  });
+
+  customInput.addEventListener('input', () => {
+    valueButtons.forEach(b => b.classList.remove('active'));
+    if (customInput.value) {
+      updateSelectedAmount(customInput.value);
+    }
+  });
+
+  toggleMoreBtn.addEventListener('click', () => {
+    moreGrid.classList.toggle('open');
+    arrowIcon.textContent = moreGrid.classList.contains('open') ? '⌃' : '⌄';
+  });
+
+  prevPageBtn.addEventListener('click', () => {
+    renderGuidePage(currentPageIndex - 1);
+    deliverableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  nextPageBtn.addEventListener('click', () => {
+    renderGuidePage(currentPageIndex + 1);
+    deliverableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  pageJumpSelect.addEventListener('change', (e) => {
+    renderGuidePage(Number(e.target.value));
+  });
+
+  const modal = document.getElementById('checkoutModal');
+  const openCheckoutBtn = document.getElementById('openCheckoutBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const modalAmountText = document.getElementById('modalAmountText');
+  const generatePixBtn = document.getElementById('generatePixBtn');
+  const openUnlockedGuideBtn = document.getElementById('openUnlockedGuideBtn');
+  const scrollToGuideBtn = document.getElementById('scrollToGuideBtn');
+  const resetAccessBtn = document.getElementById('resetAccessBtn');
+
+  const stepForm = document.getElementById('stepForm');
+  const stepPix = document.getElementById('stepPix');
+  const stepUnlocked = document.getElementById('stepUnlocked');
+
+  function unlockInModal() {
+    const name = document.getElementById('payerName').value.trim();
+    const email = document.getElementById('payerEmail').value.trim();
+    savePaidAccess(selectedAmount, currentTransactionId || '', name, email);
+    stepForm.style.display = 'none';
+    stepPix.style.display = 'none';
+    stepUnlocked.style.display = 'block';
+  }
+
+  openCheckoutBtn.addEventListener('click', () => {
+    clearError();
+    modalAmountText.textContent = 'R$ ' + formatBRL(selectedAmount);
+    stepForm.style.display = 'block';
+    stepPix.style.display = 'none';
+    stepUnlocked.style.display = 'none';
+    modal.classList.add('active');
+  });
+
+  closeModalBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    if (checkInterval) clearInterval(checkInterval);
+  });
+
+  openUnlockedGuideBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    renderGuidePage(0);
+    deliverableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  scrollToGuideBtn.addEventListener('click', () => {
+    deliverableSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  resetAccessBtn.addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    persistentBanner.classList.remove('active');
+    deliverableSection.classList.remove('active');
+  });
+
+  generatePixBtn.addEventListener('click', async () => {
+    clearError();
+    const name = document.getElementById('payerName').value.trim();
+    const email = document.getElementById('payerEmail').value.trim();
+
+    if (!name || !email) {
+      showError('Preencha seu nome e e-mail para continuar.');
+      return;
+    }
+
+    if (selectedAmount < 5) {
+      showError('O valor mínimo para contribuição é R$ 5,00.');
+      return;
+    }
+
+    generatePixBtn.textContent = 'Gerando Pix...';
+    generatePixBtn.disabled = true;
+
+    try {
+      const valueInCents = Math.round(selectedAmount * 100);
+      const res = await fetch('/criar-pix', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          value: valueInCents,
+          name,
+          email
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.qr_code) {
+        throw new Error(data.error || 'Falha ao gerar cobrança Pix.');
+      }
+
+      currentTransactionId = data.id || '';
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        paid: false,
+        amount: selectedAmount,
+        transactionId: currentTransactionId,
+        name,
+        email
+      }));
+
+      document.getElementById('pixQrImg').src = data.qr_code_base64 || '';
+      document.getElementById('pixCopyPaste').value = data.qr_code;
+
+      stepForm.style.display = 'none';
+      stepPix.style.display = 'block';
+
+      if (currentTransactionId) {
+        startPaymentPolling(currentTransactionId);
+      }
+    } catch (err) {
+      showError(err.message || 'Erro ao gerar Pix. Verifique sua configuração da PushinPay.');
+    } finally {
+      generatePixBtn.textContent = 'Gerar Pix Copia e Cola';
+      generatePixBtn.disabled = false;
+    }
+  });
+
+  function startPaymentPolling(transactionId) {
+    if (checkInterval) clearInterval(checkInterval);
+
+    checkInterval = setInterval(async () => {
+      try {
+        const res = await fetch(`/status-pix?id=${encodeURIComponent(transactionId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        if (data.status === 'paid') {
+          unlockInModal();
+        }
+      } catch (e) {
+        console.error('Erro ao checar status:', e);
+      }
+    }, 3000);
+  }
+
+  document.getElementById('copyPixBtn').addEventListener('click', () => {
+    const input = document.getElementById('pixCopyPaste');
+    input.select();
+    navigator.clipboard.writeText(input.value);
+    alert('Código Pix copiado!');
+  });
+
+  restorePaidAccessOnLoad();
+</script>
+
+</body>
+</html>
